@@ -30,7 +30,7 @@ provisioner:
           - linux_repo_openstack
           - nova
   pillars-from-files:
-    linux_repo_openstack.sls: ''
+    linux_repo_openstack.sls: tests/pillar/repo_mcp_openstack.sls
 
 verifier:
   name: inspec
@@ -41,9 +41,6 @@ platforms:
     driver_config:
       image: <%= ENV['PLATFORM'] || 'trevorj/salty-whales:xenial' %>
       platform: ubuntu
-    provisioner:
-      pillars-from-files:
-        linux_repo_openstack.sls: tests/pillar/repo_mcp_<%= "#{ENV['PLATFORM']}".split(':')[1] || 'xenial' %>.sls
 
 suites:
 
