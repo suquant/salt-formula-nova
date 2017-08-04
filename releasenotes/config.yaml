@@ -28,7 +28,7 @@ template: |
   features:
     - Use list to record summary of features.
     - |
-      Provide long description with examples.
+      Provide detailed description with examples.
       Format with reStructuredText.
 
       .. code-block:: text

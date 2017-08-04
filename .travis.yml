@@ -3,6 +3,7 @@ services:
   - docker
 
 install:
+  - git fetch --unshallow --tags
   - pip install PyYAML
   - pip install virtualenv
   - pip install reno
@@ -26,7 +27,7 @@ env:
 before_script:
   - set -o pipefail
   - make test | tail
-  - reno lint | tail
+  - reno -v lint $PWD | tail
 
 script:
   - test ! -e .kitchen.yml || bundle exec kitchen test -t tests/integration
