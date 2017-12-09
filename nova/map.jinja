@@ -11,10 +11,11 @@
 } %}
 
 {%- if grains.os_family == "Debian" %}
-{%- set pkgs_list = [ 'nova-common', 'nova-consoleproxy', 'novnc', 'nova-api', 'nova-conductor', 'nova-consoleauth', 'nova-doc', 'nova-scheduler', 'python-novaclient', 'python-memcache', 'gettext-base', 'python-pycadf'] %}
+{%- set pkgs_list = [ 'nova-common', 'novnc', 'nova-api', 'nova-conductor', 'nova-consoleauth', 'nova-doc', 'nova-scheduler', 'python-novaclient', 'python-memcache', 'gettext-base', 'python-pycadf'] %}
 {%- set services_list = ['nova-api', 'nova-consoleauth', 'nova-scheduler', 'nova-conductor', 'nova-novncproxy'] %}
 {%- if pillar.nova.controller is defined and pillar.nova.controller.get('version',{}) in ["juno", "kilo", "liberty", "mitaka", "newton", "ocata"] %}
 {%- do pkgs_list.append('nova-cert') %}
+{%- do pkgs_list.append('nova-consoleproxy') %}
 {%- do services_list.append('nova-cert') %}
 {%- endif %}
 {%- endif %}
