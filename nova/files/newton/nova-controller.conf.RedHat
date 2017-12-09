@@ -162,7 +162,7 @@ db_max_retries = 3
 db_retry_interval = 1
 connection_debug = 10
 pool_timeout = 120
-connection = {{ controller.database.engine }}+pymysql://{{ controller.database.user }}:{{ controller.database.password }}@{{ controller.database.host }}/{{ controller.database.name }}?charset=utf8
+connection = {{ controller.database.engine }}{%- if controller.database.engine == 'mysql' and '+' not in controller.database.engine -%}+pymysql{%- endif -%}://{{ controller.database.user }}:{{ controller.database.password }}@{{ controller.database.host }}/{{ controller.database.name }}?{%- if controller.database.engine == 'mysql' %}charset=utf8{% endif %}
 
 [oslo_middleware]
 enable_proxy_headers_parsing=True
@@ -178,7 +178,7 @@ db_max_retries = 3
 db_retry_interval = 1
 connection_debug = 10
 pool_timeout = 120
-connection = {{ controller.database.engine }}+pymysql://{{ controller.database.user }}:{{ controller.database.password }}@{{ controller.database.host }}/{{ controller.database.name }}_api?charset=utf8
+connection = {{ controller.database.engine }}{%- if controller.database.engine == 'mysql' and '+' not in controller.database.engine -%}+pymysql{%- endif -%}://{{ controller.database.user }}:{{ controller.database.password }}@{{ controller.database.host }}/{{ controller.database.name }}_api?{%- if controller.database.engine == 'mysql' %}charset=utf8{% endif %}
 
 [glance]
 
